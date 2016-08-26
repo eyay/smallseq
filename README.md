@@ -21,11 +21,13 @@ cutadapt -a file:adapters/cutadapt_3prime.fa -e 0.1 -O 1 -u 2 --minimum-length 1
 
 ## Mapping reads to the reference human genome (hg38) with the following STAR options
 ```
- --outSAMstrandField intronMotif --outFilterMismatchNoverLmax 0.04 --outFilterMatchNmin 18 --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --alignIntronMax 1
+./STAR   --runThreadN 10   --genomeDir path_to_hg38   --readFilesIn in.fq      --readFilesCommand -      --outSAMstrandField intronMotif   --outFilterScoreMin
+OverLread 0   --outFilterMatchNmin 18   --outFilterMatchNminOverLread 0   --outFilterMismatchNoverLmax 0.04   --alignIntronMax 1
 ```
 
-## Remove the clipped reads - i.e reads mapped via soft-clipping
+## Remove the clipped reads - i.e reads mapped via soft-clipping.  
 ```
+-Aligned bam files should be available in a format star_hg38.orig/sample1/sample1.bam
 python src/remove_softclipped_reads_parallelized_v2.py -i star_hg38.orig -o star_hg38.clipped -p 10 -n 0 -t 3
 ```
 
