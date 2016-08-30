@@ -31,7 +31,7 @@ OverLread 0   --outFilterMatchNmin 18   --outFilterMatchNminOverLread 0   --outF
 python src/remove_softclipped_reads_parallelized_v2.py -i star_hg38.orig -o star_hg38.clipped -p 10 -n 0 -t 3
 ```
 
-## Extract reads with minimum 40 nt read length (for details about cut-off see the methods section of Faridani et all, 2016)
+## Extract reads with minimum 40 nt read length (for details about cut-off see the methods section of Faridani/Abdullayev et al., 2016)
 ```
 python src/subsample_bam_by_readlen.py -d star_hg38.orig -o star_hg38 -c 40 -m max
 ```
