@@ -1,6 +1,5 @@
 import dr_tools, sys, pysam, GenomeFetch
 import os, argparse
-sys.path.append('/mnt/crick/sandberglab/sra')
 from joblib import Parallel, delayed
 
 """
@@ -83,7 +82,7 @@ if '__main__' == __name__:
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-i', '--instardir', required=True)
 	parser.add_argument('-o', '--outstardir', required=True)
-	parser.add_argument('-g', '--genome_dir', default="/mnt/kauffman/ilqara/genomes/hg38_gtrnadb/")
+	parser.add_argument('-g', '--genome_dir', default="path_to_reference_genome")
 	parser.add_argument('-c', '--readlen_cutoff', default=35)
 	parser.add_argument('-x', '--minRlen', default=41, type=int)  #minimum read length to define a precursor
 	parser.add_argument('-p', '--numCPU', default=20, type=int)

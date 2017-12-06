@@ -13,6 +13,7 @@ First, remove the UMI sequences specifiying the sequence with correct number of 
 maxRlen=40 #maximum read length to define a small RNA
 minRlen=41 #minimum read length to define a precursor
 nprocs=3 #number of processors to use
+path_to_reference_genome=reference_genome #path for the reference genome
 source ~/cgat-install/conda-install/bin/activate cgat-scripts
 python ../src/remove_umi_from_fastq_v4.py -d rawdata -o rawdata_noUMI -u NNNNNNNN -p $nprocs
 ```
@@ -28,7 +29,7 @@ cat cmds/RemoveAdaptors.sh | parallel -P $nprocs -n 1
 ## Mapping reads to the reference human genome (hg38) with the following STAR options
 ```
 for sample in `ls rawdata`; do mkdir -p starout/$sample; done
-ls rawdata_final | xargs -I% echo 'STAR   --runThreadN 10   --genomeDir /mnt/kauffman/sandberglab/star_index/hg38_ERCC_mirnaERCC_v2   --readFilesIn rawdata_final/%/%.fastq      --readFilesCommand -      --outSAMstrandField intronMotif   --outFilterMultimapNmax 50   --outFilterScoreMinOverLread 0   --outFilterMatchNmin 18   --outFilterMatchNminOverLread 0   --outFilterMismatchNoverLmax 0.04   --alignIntronMax 1 --outFileNamePrefix starout/%/' > cmds/map.sh
+ls rawdata_final | xargs -I% echo 'STAR   --runThreadN 10   --genomeDir ${path_to_reference_genome}   --readFilesIn rawdata_final/%/%.fastq      --readFilesCommand -      --outSAMstrandField intronMotif   --outFilterMultimapNmax 50   --outFilterScoreMinOverLread 0   --outFilterMatchNmin 18   --outFilterMatchNminOverLread 0   --outFilterMismatchNoverLmax 0.04   --alignIntronMax 1 --outFileNamePrefix starout/%/' > cmds/map.sh
 cat cmds/map.sh | parallel -P $nprocs -n 1
 ```
 
@@ -59,7 +60,7 @@ python ../src/remove_umi_dedup.py -d starout_max${maxRlen} -o starout_molc -p $n
 
 ## Remove precursor reads. OBS: these reads are wrongly assigned as small RNAs, but they are actually coming from precursors.
 ```
-python ../src/remove_reads_with_genomic_TGG.py -i starout_molc -o starout_molc_final -p $nprocs -x ${minRlen}
+python ../src/remove_reads_with_genomic_TGG.py -i starout_molc -o starout_molc_final -g ${path_to_reference_genome} -p $nprocs -x ${minRlen}
 ```
 
 ## Count molecules and merge into single file. Custom annotation file could also be used. Make sure it is in GenePred format. 
