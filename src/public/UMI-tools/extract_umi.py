@@ -103,6 +103,10 @@ def addUMItoIdentifier(read, UMI):
 
     return identifier
 
+#alternatively these lines could be added
+#    identifier = read.identifier + "_" + UMI
+#    return identifier
+
 
 class Extractor:
     ''' A functor that extracts the UMI and the barcode from the read(s),

@@ -126,7 +126,7 @@ if '__main__' == __name__:
 	samplenames_with_fullpath = []
 	for sample in sample_names:
 		##prepare input files
-		uniqmultibam = os.path.join(o.instardir, sample, "%s_uniq+multi.bam" %sample)
+		uniqmultibam = os.path.join(o.instardir, sample, "%s.bam" %sample)
 		samplenames_with_fullpath.append(uniqmultibam)
 		path_outbam = os.path.join(o.outdir, sample)
 		if not os.path.exists(path_outbam): safe_mkdir(path_outbam)

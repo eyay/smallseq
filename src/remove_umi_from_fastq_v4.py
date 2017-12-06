@@ -15,7 +15,7 @@ def safe_mkdir(path):
 		os.chmod(path, 0o774)
 
 def trim_umi(in_fq, out_fq, umi_seq, logfile):
-	cmd = 'python src/public/UMI-tools/extract_umi.py --bc-pattern=%s -L %s -I %s -S %s' %(umi_seq, logfile, in_fq, out_fq)
+	cmd = 'python ../src/public/UMI-tools/extract_umi.py --bc-pattern=%s -L %s -I %s -S %s' %(umi_seq, logfile, in_fq, out_fq)
 	subprocess.call(cmd, shell = True)
 
 def parallel_process(sample):
