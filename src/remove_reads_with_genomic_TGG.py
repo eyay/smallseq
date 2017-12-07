@@ -1,6 +1,8 @@
-import dr_tools, sys, pysam, GenomeFetch
+import dr_tools, sys, pysam
 import os, argparse
 from joblib import Parallel, delayed
+sys.path.insert(0, '../src')
+import GenomeFetch
 
 """
 This script removes reads when 3' has TGG on the genome
