@@ -76,7 +76,7 @@ rm counts_molc.txt
 ```
 
 ```
-The counts_molc_final.txt is a table containing molecule counts of all the RNA biotypes in the annotation table. If you get this file, it means the pipeline has been executed cprrectly.
+The counts_molc_final.txt is a table containing molecule counts of all the RNA biotypes in the annotation table. If you get this file, it means the pipeline has been executed correctly.
 ```
 
 ## Citation
