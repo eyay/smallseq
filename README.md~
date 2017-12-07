@@ -10,6 +10,7 @@ Install cutadapt, cgat (from https://github.com/CGATOxford/cgat/releases/tag/v0.
 ## Remove UMI from reads: 
 First, remove the UMI sequences specifiying the sequence with correct number of Ns
 ```
+cd test
 maxRlen=40 #maximum read length to define a small RNA
 minRlen=41 #minimum read length to define a precursor
 nprocs=3 #number of processors to use
